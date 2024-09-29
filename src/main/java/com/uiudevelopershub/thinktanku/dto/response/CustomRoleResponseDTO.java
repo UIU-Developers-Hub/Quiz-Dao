@@ -1,0 +1,20 @@
+package com.uiudevelopershub.thinktanku.dto.response;
+
+import java.util.Set;
+
+public interface CustomRoleResponseDTO {
+
+    Long getId();
+
+    String getRoleType();
+
+    Set< UserInfo > getUsers();
+
+    interface UserInfo {
+        Long getId();
+
+        String getUsername();
+
+        String getEmail();
+    }
+}
