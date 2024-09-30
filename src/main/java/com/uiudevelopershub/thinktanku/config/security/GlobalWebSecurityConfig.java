@@ -69,7 +69,8 @@ public class GlobalWebSecurityConfig {
                             )
                             .permitAll()
                             .anyRequest()
-                            .permitAll();  // Secure all other endpoints
+                            .permitAll();  // after developing the project ,for securing our api
+                    //we need to write authenticate() instade of permitALL()
                 })
               //  .authenticationManager(authentication -> authentication.)
                 .authenticationProvider(daoAuthenticationProvider())
