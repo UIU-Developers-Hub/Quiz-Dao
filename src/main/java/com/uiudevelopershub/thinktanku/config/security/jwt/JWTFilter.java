@@ -60,8 +60,12 @@ public class JWTFilter extends OncePerRequestFilter {
         filterChain.doFilter( request, response );
     }
 
-    @Override
-    protected boolean shouldNotFilter( @NotNull HttpServletRequest request ) throws ServletException {
-        return true ;
-    }
+
+
+  //We use this method to block a specific URL
+
+//    @Override
+//    protected boolean shouldNotFilter( @NotNull HttpServletRequest request ) throws ServletException {
+//        return true ;
+//    }
 }
