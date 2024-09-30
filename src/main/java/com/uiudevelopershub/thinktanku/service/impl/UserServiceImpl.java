@@ -10,16 +10,15 @@ import com.uiudevelopershub.thinktanku.repository.role.RoleRepo;
 import com.uiudevelopershub.thinktanku.repository.user.UserRepo;
 import com.uiudevelopershub.thinktanku.service.UserService;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.Objects;
 import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+
     private final UserRepo userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepo roleRepository;
@@ -36,6 +35,7 @@ public class UserServiceImpl implements UserService {
 
     }
 
+
     public CustomUserResponseDTO readOne(Long id ) {
         CustomUserResponseDTO singleUserById = userRepository.findUserByUserId(id);
         if ( Objects.isNull( singleUserById ) ) {
@@ -45,9 +45,8 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
-
     public User setUserRoles( UserRolesRequestDTO requestDTO ) {
+
         User foundUser = userRepository.findById( requestDTO.userId() ).get();
 
         if ( Objects.isNull( foundUser ) ) {
@@ -60,6 +59,5 @@ public class UserServiceImpl implements UserService {
       return  userRepository.save( foundUser );
 
     }
-
 
 }

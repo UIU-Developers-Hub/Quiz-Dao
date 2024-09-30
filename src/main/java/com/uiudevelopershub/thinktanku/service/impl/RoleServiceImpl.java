@@ -1,6 +1,5 @@
 package com.uiudevelopershub.thinktanku.service.impl;
 
-
 import com.uiudevelopershub.thinktanku.dto.request.RoleRequestDTO;
 import com.uiudevelopershub.thinktanku.dto.response.CustomRoleResponseDTO;
 import com.uiudevelopershub.thinktanku.model.role.Role;
@@ -8,7 +7,6 @@ import com.uiudevelopershub.thinktanku.repository.role.RoleRepo;
 import com.uiudevelopershub.thinktanku.service.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.Objects;
 
 @Service
@@ -22,6 +20,7 @@ public class RoleServiceImpl implements RoleService {
        role.setRoleType(requestDto.roleType());
        roleRepository.save(role);
     }
+
 
     public CustomRoleResponseDTO readOne(Long id ) {
         CustomRoleResponseDTO singleRoleById = roleRepository.findRoleById( id );
@@ -41,6 +40,7 @@ public class RoleServiceImpl implements RoleService {
 
         return "Role Deleted Successfully.";
     }
+
 
     private RoleRequestDTO cleanDTOFields( RoleRequestDTO requestDto ) {
         return new RoleRequestDTO(
@@ -74,7 +74,9 @@ public class RoleServiceImpl implements RoleService {
         return role;
     }
 
+
     private void deleteValidator( Role role ) {
 
     }
+
 }

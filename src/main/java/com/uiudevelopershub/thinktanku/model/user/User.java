@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -14,12 +13,12 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table( name = "_user" )
 //@SuperBuilder
 //@SQLRestriction( "is_active = TRUE" )
 //@SQLDelete( sql = "UPDATE _user SET is_active = FALSE WHERE id = ?" )
-@Entity
-@Table( name = "_user" )
-////@NamedEntityGraph(
+//@NamedEntityGraph(
 //        name = "User.roles",
 //        attributeNodes = @NamedAttributeNode("roles")
 //)
@@ -47,5 +46,7 @@ public class User {
             joinColumns = @JoinColumn( name = "user_id" ),
             inverseJoinColumns = @JoinColumn( name = "roles_id" )
     )
+
     private Set<Role> roles = new LinkedHashSet<>();
+
 }

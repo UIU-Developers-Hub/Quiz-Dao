@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Builder
 public class CustomUserDetails implements UserDetails, Principal, Serializable {
+
     private Long id;
     private String username;
     private String email;

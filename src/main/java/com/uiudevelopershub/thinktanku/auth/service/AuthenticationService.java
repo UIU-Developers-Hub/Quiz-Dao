@@ -1,6 +1,5 @@
 package com.uiudevelopershub.thinktanku.auth.service;
 
-
 import com.uiudevelopershub.thinktanku.auth.CustomUserDetails;
 import com.uiudevelopershub.thinktanku.auth.dtos.requests.LoginRequestDTO;
 import com.uiudevelopershub.thinktanku.auth.dtos.responses.LoginResponseDTO;
@@ -11,13 +10,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
-
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService implements IAuthenticationService {
+
     private final AuthenticationManager authenticationManager;
     private final JWTService jwtService;
 

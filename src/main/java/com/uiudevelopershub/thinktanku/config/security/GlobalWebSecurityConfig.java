@@ -23,7 +23,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
-
 import java.io.IOException;
 
 @Configuration
@@ -31,13 +30,14 @@ import java.io.IOException;
 @EnableMethodSecurity
 @RequiredArgsConstructor
 public class GlobalWebSecurityConfig {
+
     private final JWTFilter jwtFilter;
     private final UserDetailsService customUserDetailsService;
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-
                 .cors(cors -> cors.configurationSource(new CustomCORSConfig()))
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(
@@ -78,6 +78,7 @@ public class GlobalWebSecurityConfig {
         return http.build();
     }
 
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();  // Default manager using DAO
@@ -92,6 +93,7 @@ public class GlobalWebSecurityConfig {
         return authProvider;
     }
 
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -105,7 +107,6 @@ public class GlobalWebSecurityConfig {
 
     @Component
     public static class customAccess implements AccessDeniedHandler {
-
         @Override
         public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
             request.setAttribute("javax.servlet.error.status_code", HttpServletResponse.SC_FORBIDDEN);

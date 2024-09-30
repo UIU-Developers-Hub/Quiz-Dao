@@ -4,10 +4,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
-
 import java.util.Collections;
 
 public class CustomCORSConfig implements CorsConfigurationSource {
+
     @Override
     public CorsConfiguration getCorsConfiguration( @NotNull HttpServletRequest request ) {
         CorsConfiguration corsConfig = new CorsConfiguration();

@@ -6,8 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -15,10 +13,10 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 //@SuperBuilder
 //@SQLRestriction( "is_active = TRUE" )
 //@SQLDelete( sql = "UPDATE role SET is_active = FALSE WHERE id = ?" )
-@Entity
 public class Role {
 
     @Id

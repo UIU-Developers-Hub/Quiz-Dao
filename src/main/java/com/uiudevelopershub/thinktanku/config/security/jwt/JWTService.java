@@ -32,18 +32,22 @@ public class JWTService {
         return claimsResolver.apply( claims );
     }
 
+
     public boolean isTokenValid( String token, UserDetails user ) {
         final String username = extractUsername( token );
         return ( username.equals( user.getUsername() ) ) && !isTokenExpired( token );
     }
 
+
     public String extractUsername( String token ) {
         return extractClaim( token, Claims::getSubject );
     }
 
+
     public String generateToken( UserDetails user ) {
         return generateToken( new HashMap<>(), user );
     }
+
 
     public String generateToken(
             Map< String, Object > extraClaims,
@@ -51,6 +55,7 @@ public class JWTService {
     ) {
         return buildToken( extraClaims, user, jwtExpiration );
     }
+
 
     private String buildToken(
             Map< String, Object > extraClaims,
@@ -73,6 +78,7 @@ public class JWTService {
                 .signWith( getSingInKey() )
                 .compact();
     }
+
 
     private boolean isTokenExpired( String token ) {
         return extractExpiration( token ).before( new Date() );

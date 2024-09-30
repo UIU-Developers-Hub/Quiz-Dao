@@ -6,7 +6,9 @@ import com.uiudevelopershub.thinktanku.dto.response.CustomUserResponseDTO;
 import com.uiudevelopershub.thinktanku.model.user.User;
 
 public interface UserService {
+
     public void create( UserRequestDTO requestDto );
     public CustomUserResponseDTO readOne(Long id );
     public User setUserRoles(UserRolesRequestDTO requestDTO );
+
 }

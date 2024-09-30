@@ -3,8 +3,6 @@ package com.uiudevelopershub.thinktanku.auth.dtos.responses;
 import java.io.Serializable;
 import java.util.Set;
 
-
-
 public record LoginResponseDTO(
         String token,
         String username,

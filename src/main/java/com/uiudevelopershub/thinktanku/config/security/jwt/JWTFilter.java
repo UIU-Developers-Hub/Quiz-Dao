@@ -13,13 +13,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import java.io.IOException;
 import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
 public class JWTFilter extends OncePerRequestFilter {
+
     private final JWTService jwtService;
     private final CustomUserDetailsService customUserDetailsService;
 
@@ -30,7 +30,6 @@ public class JWTFilter extends OncePerRequestFilter {
             @NotNull FilterChain filterChain
     ) throws ServletException, IOException {
         final String authorizationHeader = request.getHeader( "Authorization" );
-
         final String jwt;
         final String username;
 
@@ -68,4 +67,5 @@ public class JWTFilter extends OncePerRequestFilter {
 //    protected boolean shouldNotFilter( @NotNull HttpServletRequest request ) throws ServletException {
 //        return true ;
 //    }
+
 }

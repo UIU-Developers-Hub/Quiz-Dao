@@ -1,10 +1,10 @@
 package com.uiudevelopershub.thinktanku.dto.request;
 
 import jakarta.validation.constraints.NotNull;
-
 import java.util.Set;
 
 public record UserRolesRequestDTO(
+
         @NotNull( message = "User id can't be null or empty." )
         Long userId,
 
