@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -21,7 +22,6 @@ public class QuizSession {
     @Id
     @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "quiz_session_gen" )
     @SequenceGenerator( name = "quiz_session_gen", sequenceName = "quiz_session_seq" )
-    @Column( name = "id", nullable = false )
     private Long id;
 
     @Column( nullable = false )
@@ -31,5 +31,5 @@ public class QuizSession {
     private String QuizSessionName;
 
     @OneToMany( mappedBy = "quizSession", cascade = CascadeType.ALL, orphanRemoval = true )
-    private Set<Quiz> quizzes = new LinkedHashSet<>();
+    private Set<Quiz> quizzes = new HashSet<>();
 }

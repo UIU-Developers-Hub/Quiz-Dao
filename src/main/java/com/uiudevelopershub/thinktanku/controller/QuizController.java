@@ -24,7 +24,17 @@ public class QuizController {
     }
 
     @GetMapping("Get-All")
-    public ResponseEntity<PageResponseDto>getQuizList(int pageNo, int pageSize) {
+    public ResponseEntity<PageResponseDto>getQuizList(
+            @RequestParam(value = "pageNo",
+            defaultValue = "1",
+            required = false)
+
+             int pageNo
+            ,@RequestParam(
+            value = "pageSize",
+            defaultValue = "10",
+            required = false
+    ) int pageSize) {
         return ResponseEntity.ok(quizService.getAllQuiz(pageNo, pageSize));
     }
 

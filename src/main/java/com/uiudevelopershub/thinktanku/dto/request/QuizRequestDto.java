@@ -9,7 +9,6 @@ import jakarta.persistence.ManyToOne;
 
 
 public record QuizRequestDto(
-      Long id,
 
       String questionTitle,
 

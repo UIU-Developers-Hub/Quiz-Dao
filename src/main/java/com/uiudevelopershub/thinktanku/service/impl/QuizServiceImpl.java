@@ -30,7 +30,7 @@ public class QuizServiceImpl implements QuizService {
     }
 
     public Quiz ConvertToEntity(QuizRequestDto quizRequestDto, Quiz quiz) {
-        quiz.setId(quizRequestDto.id());
+       // quiz.setId(quizRequestDto.id());
         quiz.setQuizSession(quizSessionRepo.findById(quizRequestDto.quizSessionId()).orElse(null));
         quiz.setQuestionAnswer(quizRequestDto.questionAnswer());
         quiz.setQuestionTitle(quizRequestDto.questionTitle());
@@ -52,14 +52,15 @@ public class QuizServiceImpl implements QuizService {
 //                 quiz.getOptionFour(),
 //                 quizRequestDto.quizSessionId() );
       //  QuizSession quizSession=quizSessionRepo.findById(quizRequestDto.quizSessionId()).orElse(null);
-        return new QuizRequestDto(quiz.getId(),
+        return new QuizRequestDto(
                 quiz.getQuestionTitle()
                 , quiz.getQuestionAnswer(),
                 quiz.getOptionOne(),
                 quiz.getOptionTwo(),
                 quiz.getOptionThree()
                 , quiz.getOptionFour(),
-                quiz.getQuizSession().getId());
+                quiz.getQuizSession() == null ? null:quiz.getQuizSession().getId()
+        );
     }
 
     @Override
@@ -70,12 +71,11 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public PageResponseDto getAllQuiz(int pageNo, int pageSize) {
-        Pageable pageable= PageRequest.of(pageNo, pageSize);
-        Page<Quiz> quizPage = quizRepo.findAll(pageable);
-        List<Quiz> quizList = quizPage.getContent();
-        List<QuizRequestDto> quizRequestDtoList = quizList.stream()
+        Pageable pageable= PageRequest.of(pageNo-1, pageSize);
+        Page<Quiz> quizPage = quizRepo.findAllWithPaginationOrdered(pageable);
+        List<QuizRequestDto> quizRequestDtoList = quizPage.getContent().stream()
                 .map(this::mapToDto)
-                .toList();
+                .collect(Collectors.toList());
         PageResponseDto pageResponseDto = new PageResponseDto();
         pageResponseDto.setContent(quizRequestDtoList);
         pageResponseDto.setPageSize(quizPage.getSize());
