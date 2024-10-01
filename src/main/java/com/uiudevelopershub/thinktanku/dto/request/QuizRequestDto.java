@@ -5,9 +5,9 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import org.springframework.stereotype.Component;
 
 public record QuizRequestDto(
-
       Long id,
 
       String questionTitle,
