@@ -5,6 +5,7 @@ import com.uiudevelopershub.thinktanku.dto.response.PageResponseDto;
 import com.uiudevelopershub.thinktanku.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,7 +17,7 @@ public class QuizController {
     public QuizController(QuizService quizService) {
         this.quizService = quizService;
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     @PostMapping("Create")
     public String createQuiz(QuizRequestDto quizRequestDto) {
         quizService.createQuiz(quizRequestDto);
@@ -38,6 +39,7 @@ public class QuizController {
         return ResponseEntity.ok(quizService.getAllQuiz(pageNo, pageSize));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     @DeleteMapping("{id}")
     public String DeleteQuiz(@PathVariable  Long id) {
         quizService.DeleteQuiz(id);

@@ -5,6 +5,7 @@ import com.uiudevelopershub.thinktanku.dto.response.QuizSessionResponseDto;
 import com.uiudevelopershub.thinktanku.service.QuizSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,12 +17,13 @@ public class QuizSessionController {
         this.quizSessionService = quizSessionService;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     @PostMapping("Create")
     public String  create(@RequestBody  QuizSessionRequestDto quizSessionRequestDto) {
         quizSessionService.CreateQuizSession(quizSessionRequestDto);
         return "Quiz session created";
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("{id}")
     public String Delete(@PathVariable Long id) {
         quizSessionService.DeleteQuizSessionById(id);

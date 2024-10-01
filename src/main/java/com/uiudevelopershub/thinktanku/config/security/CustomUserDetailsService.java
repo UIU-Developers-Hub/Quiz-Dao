@@ -29,7 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         Set< String > grantedAuthorities = foundUser
                 .getRoles()
                 .stream()
-                .map(Role::getRoleType )
+                .map(e->"ROLE_"+e.getRoleType() )
                 .collect( Collectors.toSet() );
 
         return CustomUserDetails

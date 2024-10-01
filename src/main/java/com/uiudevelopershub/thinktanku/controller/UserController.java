@@ -7,6 +7,7 @@ import com.uiudevelopershub.thinktanku.model.user.User;
 import com.uiudevelopershub.thinktanku.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,13 +17,14 @@ public class UserController {
 
     private final UserServiceImpl userService;
 
-    @PostMapping( )
+    @PostMapping()
     public ResponseEntity< String > create( UserRequestDTO requestDto ) {
         userService.create(requestDto);
        return ResponseEntity.ok("Successfully created user");
     }
 
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     @GetMapping( "{id}" )
     public ResponseEntity<CustomUserResponseDTO> readOne(@PathVariable( "id" ) Long id ) {
         return ResponseEntity
@@ -30,11 +32,10 @@ public class UserController {
                 .body( userService.readOne( id ) );
     }
 
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping( "change-roles" )
-    public ResponseEntity<User> setUserRoles(@RequestBody UserRolesRequestDTO requestDTO ) {
-        return ResponseEntity
-                .ok()
-                .body( userService.setUserRoles( requestDTO ) );
+    public ResponseEntity<String> setUserRoles(@RequestBody UserRolesRequestDTO requestDTO ) {
+      userService.setUserRoles( requestDTO ) ;
+      return ResponseEntity.ok("Successfully set user roles");
     }
 }
