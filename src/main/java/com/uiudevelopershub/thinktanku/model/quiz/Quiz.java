@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.proxy.HibernateProxy;
-import org.springframework.data.relational.core.mapping.Table;
+
 
 import java.util.Objects;
 
@@ -19,8 +19,8 @@ import java.util.Objects;
 @Table
 public class Quiz {
     @Id
-    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "quiz_gen" )
-    @SequenceGenerator( name = "quiz_gen", sequenceName = "quiz_seq", allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+   // @SequenceGenerator( name = "quiz_gen", sequenceName = "quiz_seq", allocationSize = 1 )
     @Column( name = "id", nullable = false )
     private Long id;
 

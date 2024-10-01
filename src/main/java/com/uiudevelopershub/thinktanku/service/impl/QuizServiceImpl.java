@@ -21,7 +21,7 @@ public class QuizServiceImpl implements QuizService {
 
     public QuizRepo quizRepo;
     public QuizSessionRepo quizSessionRepo;
-    public QuizRequestDto quizRequestDto;
+
 
     @Autowired
     public QuizServiceImpl(QuizRepo quizRepo, QuizSessionRepo quizSessionRepo) {
@@ -42,8 +42,24 @@ public class QuizServiceImpl implements QuizService {
     }
 
     private QuizRequestDto mapToDto(Quiz quiz) {
+//         QuizRequestDto quizRequestDto = new QuizRequestDto(
+//                 quiz.getId(),
+//                 quiz.getQuestionTitle(),
+//                 quiz.getQuestionAnswer(),
+//                 quiz.getOptionOne(),
+//                 quiz.getOptionTwo(),
+//                 quiz.getOptionThree(),
+//                 quiz.getOptionFour(),
+//                 quizRequestDto.quizSessionId() );
       //  QuizSession quizSession=quizSessionRepo.findById(quizRequestDto.quizSessionId()).orElse(null);
-        return new QuizRequestDto(quiz.getId(), quiz.getQuestionTitle(), quiz.getQuestionAnswer(), quiz.getOptionOne(), quiz.getOptionTwo(), quiz.getOptionThree(), quiz.getOptionFour(),quizRequestDto.quizSessionId() );
+        return new QuizRequestDto(quiz.getId(),
+                quiz.getQuestionTitle()
+                , quiz.getQuestionAnswer(),
+                quiz.getOptionOne(),
+                quiz.getOptionTwo(),
+                quiz.getOptionThree()
+                , quiz.getOptionFour(),
+                quiz.getQuizSession().getId());
     }
 
     @Override
