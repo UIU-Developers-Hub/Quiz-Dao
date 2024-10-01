@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface QuizSessionRepo extends JpaRepository<QuizSession, Long> {
-    @EntityGraph( attributePaths = { "quiz" } )
+    @EntityGraph( attributePaths = { "quizzes" } )
     @Query( """
                 SELECT
                     q

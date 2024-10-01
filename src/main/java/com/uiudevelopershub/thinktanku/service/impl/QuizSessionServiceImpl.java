@@ -31,7 +31,7 @@ public class QuizSessionServiceImpl implements QuizSessionService {
     @Override
     public QuizSessionResponseDto GetQuizSessionById(Long quizSessionId) {
         QuizSessionResponseDto singleQuizSessionById = quizSessionRepo.findQuizSessionById(quizSessionId);
-        if ( Objects.isNull( singleQuizSessionById ) ) {
+        if (Objects.isNull( singleQuizSessionById ) ) {
             throw new RuntimeException("not found" );
         }
         return singleQuizSessionById;

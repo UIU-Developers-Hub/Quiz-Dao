@@ -38,9 +38,9 @@ public class QuizController {
         return ResponseEntity.ok(quizService.getAllQuiz(pageNo, pageSize));
     }
 
-    @DeleteMapping
-    public String DeleteQuiz(Long quizId) {
-        quizService.DeleteQuiz(quizId);
+    @DeleteMapping("{id}")
+    public String DeleteQuiz(@PathVariable  Long id) {
+        quizService.DeleteQuiz(id);
         return "Quiz deleted";
     }
 

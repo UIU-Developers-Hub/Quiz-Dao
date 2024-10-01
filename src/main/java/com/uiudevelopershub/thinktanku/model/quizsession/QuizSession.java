@@ -18,10 +18,11 @@ import java.util.UUID;
 @Entity
 @Table
 public class QuizSession {
-    @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
   //  @SequenceGenerator( name = "quiz_session_gen", sequenceName = "quiz_session_seq" )
-    private Long id;
+
 
     @Column( nullable = false )
     private String sessionId = UUID.randomUUID().toString();
