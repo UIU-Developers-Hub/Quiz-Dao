@@ -1,6 +1,6 @@
 package com.uiudevelopershub.thinktanku.model.user;
 
-import com.uiudevelopershub.thinktanku.model.questionsessionperuser.QuestionSessionPerUser;
+
 import com.uiudevelopershub.thinktanku.model.role.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -50,7 +50,6 @@ public class User {
 
     private Set<Role> roles = new LinkedHashSet<>();
 
-    @ManyToMany(mappedBy = "users", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
-    private Set<QuestionSessionPerUser> questionSessionPerUsers = new LinkedHashSet<>();
+
 
 }
