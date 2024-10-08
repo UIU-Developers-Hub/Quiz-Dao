@@ -15,7 +15,7 @@ import reactor.core.publisher.Flux;
 public class SSEController {
     private final SSEService<User> sseService;
 
-    @PreAuthorize("hasAnyRole('Admin')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "Subscribe", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<User> subscribe() {
         return sseService.subscribe();
