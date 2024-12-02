@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -80,7 +81,7 @@ public class GlobalWebSecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();  // Default manager using DAO
     }
-
+// it is important.we need to uncomment it .
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
@@ -96,10 +97,11 @@ public class GlobalWebSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-   // @Bean
-   // public void configure(AuthenticationManagerBuilder auth) throws Exception {
-     //   auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
-  //  }
+//    @Bean
+//    public String configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+//        return "nothing";
+//    }
 
 
     @Component

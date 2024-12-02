@@ -1,4 +1,4 @@
-package com.uiudevelopershub.thinktanku.config.security;//package org.Edu.navigator.Config.security;
+//package com.uiudevelopershub.thinktanku.config.security;//package org.Edu.navigator.Config.security;
 //
 //import org.Edu.navigator.model.user.User;
 //import org.springframework.security.core.GrantedAuthority;
