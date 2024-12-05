@@ -65,8 +65,9 @@ public class GlobalWebSecurityConfig {
                                     "/swagger-ui.html"
                             )
                             .permitAll()
-                            .anyRequest()
-                            .authenticated();  // after developing the project ,for securing our api
+                            .anyRequest().
+                            permitAll();
+                            //.authenticated();  // after developing the project ,for securing our api
                     //we need to write authenticate() instade of permitALL()
                 })
               //  .authenticationManager(authentication -> authentication.)
