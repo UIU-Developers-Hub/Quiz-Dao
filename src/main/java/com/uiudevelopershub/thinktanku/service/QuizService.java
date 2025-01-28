@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 public interface QuizService {
 
     void createQuiz(QuizRequestDto quizRequestDto);
-    PageResponseDto getAllQuiz(int pageNo, int pageSize);
+//    PageResponseDto getAllQuiz(int pageNo, int pageSize);
     void DeleteQuiz(Long id);
 
 }

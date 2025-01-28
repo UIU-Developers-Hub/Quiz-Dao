@@ -1,27 +1,32 @@
 package com.uiudevelopershub.thinktanku.config.security.jwt;
 
+
 import com.uiudevelopershub.thinktanku.config.security.CustomUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.constraints.NotNull;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
 import java.io.IOException;
 import java.util.Objects;
 
 @Component
-@RequiredArgsConstructor
 public class JWTFilter extends OncePerRequestFilter {
 
-    private final JWTService jwtService;
-    private final CustomUserDetailsService customUserDetailsService;
+    private  JWTService jwtService;
+    private CustomUserDetailsService customUserDetailsService;
+
+    public JWTFilter(JWTService jwtService, CustomUserDetailsService customUserDetailsService) {
+        this.jwtService = jwtService;
+        this.customUserDetailsService = customUserDetailsService;
+    }
 
     @Override
     protected void doFilterInternal(
@@ -61,7 +66,7 @@ public class JWTFilter extends OncePerRequestFilter {
 
 
 
-  //We use this method to block a specific URL
+    //We use this method to block a specific URL
 
 //    @Override
 //    protected boolean shouldNotFilter( @NotNull HttpServletRequest request ) throws ServletException {
@@ -69,3 +74,4 @@ public class JWTFilter extends OncePerRequestFilter {
 //    }
 
 }
+

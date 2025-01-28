@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -20,14 +19,16 @@ import java.util.UUID;
 @Entity
 @Table
 public class QuizSession {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
+
   //  @SequenceGenerator( name = "quiz_session_gen", sequenceName = "quiz_session_seq" )
 
-
+//
     @Column( nullable = false )
     private String sessionId = UUID.randomUUID().toString();
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column( nullable = false )
     private String QuizSessionName;

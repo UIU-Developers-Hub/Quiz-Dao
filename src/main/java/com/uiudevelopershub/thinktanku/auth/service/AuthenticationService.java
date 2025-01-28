@@ -1,24 +1,29 @@
 package com.uiudevelopershub.thinktanku.auth.service;
 
 import com.uiudevelopershub.thinktanku.auth.CustomUserDetails;
-import com.uiudevelopershub.thinktanku.auth.dtos.requests.LoginRequestDTO;
-import com.uiudevelopershub.thinktanku.auth.dtos.responses.LoginResponseDTO;
+import com.uiudevelopershub.thinktanku.auth.dto.request.LoginRequestDTO;
+import com.uiudevelopershub.thinktanku.auth.dto.response.LoginResponseDTO;
 import com.uiudevelopershub.thinktanku.config.security.jwt.JWTService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class AuthenticationService implements IAuthenticationService {
 
-    private final AuthenticationManager authenticationManager;
-    private final JWTService jwtService;
+
+    private  AuthenticationManager authenticationManager;
+    private JWTService jwtService;
+
+    public AuthenticationService(AuthenticationManager authenticationManager, JWTService jwtService) {
+        this.authenticationManager = authenticationManager;
+        this.jwtService = jwtService;
+    }
 
     @Override
     public LoginResponseDTO login(LoginRequestDTO requestDTO ) {

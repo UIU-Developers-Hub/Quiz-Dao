@@ -4,13 +4,11 @@ import com.uiudevelopershub.thinktanku.config.security.jwt.JWTFilter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,16 +22,21 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-@RequiredArgsConstructor
+
 public class GlobalWebSecurityConfig {
 
-    private final JWTFilter jwtFilter;
-    private final UserDetailsService customUserDetailsService;
+    private JWTFilter jwtFilter;
+    private  UserDetailsService customUserDetailsService;
+    public GlobalWebSecurityConfig(JWTFilter jwtFilter, UserDetailsService customUserDetailsService) {
+        this.jwtFilter = jwtFilter;
+        this.customUserDetailsService = customUserDetailsService;
+    }
 
 
     @Bean
@@ -42,7 +45,7 @@ public class GlobalWebSecurityConfig {
                 .cors(cors -> cors.configurationSource(new CustomCORSConfig()))
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(
-                        SessionCreationPolicy.STATELESS
+                        SessionCreationPolicy.ALWAYS
                 ))
                 .authorizeHttpRequests((httpRequests) -> {
                     httpRequests
@@ -67,10 +70,10 @@ public class GlobalWebSecurityConfig {
                             .permitAll()
                             .anyRequest().
                             permitAll();
-                            //.authenticated();  // after developing the project ,for securing our api
+                    //.authenticated();  // after developing the project ,for securing our api
                     //we need to write authenticate() instade of permitALL()
                 })
-              //  .authenticationManager(authentication -> authentication.)
+                //  .authenticationManager(authentication -> authentication.)
                 .authenticationProvider(daoAuthenticationProvider())
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
@@ -80,15 +83,14 @@ public class GlobalWebSecurityConfig {
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();  // Default manager using DAO
+        return authenticationConfiguration.getAuthenticationManager();
     }
-// it is important.we need to uncomment it .
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(customUserDetailsService);  // Set the custom UserDetailsService
-        authProvider.setPasswordEncoder(passwordEncoder());  // Set the password encoder
+        authProvider.setUserDetailsService(customUserDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
 
@@ -114,4 +116,3 @@ public class GlobalWebSecurityConfig {
         }
     }
 }
-

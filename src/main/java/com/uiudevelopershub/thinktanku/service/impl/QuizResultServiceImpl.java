@@ -1,6 +1,6 @@
 package com.uiudevelopershub.thinktanku.service.impl;
 
-import com.uiudevelopershub.thinktanku.model.quiz.Quiz;
+
 import com.uiudevelopershub.thinktanku.model.quizresult.QuizResult;
 import com.uiudevelopershub.thinktanku.repository.quizresultrepo.QuizResultRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +18,14 @@ public class QuizResultServiceImpl {
 
     public void submitAnswer(Long userId, Long quizSessionId, Long questionId, String userAnswer) {
         boolean isCorrect = checkAnswer(questionId, userAnswer);
-
-        QuizResult quizResult = new QuizResult();
-        quizResult.setUserId(userId);
-        quizResult.setQuizSessionId(quizSessionId);
-        quizResult.setQuestionId(questionId);
-        quizResult.setIsCorrect(isCorrect);
-
-        quizResultRepository.save(quizResult);
+//
+//        QuizResult quizResult = new QuizResult();
+//        quizResult.setUserId(userId);
+//        quizResult.setQuizSessionId(quizSessionId);
+//        quizResult.setQuestionId(questionId);
+//        quizResult.setIsCorrect(isCorrect);
+//
+//        quizResultRepository.save(quizResult);
     }
 
     public long countCorrectAnswers(Long quizSessionId, Long userId) {

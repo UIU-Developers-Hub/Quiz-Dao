@@ -16,4 +16,3 @@ public class AuthorizeInterceptorConfig implements HandlerInterceptor {
         return true;
     }
 }
-

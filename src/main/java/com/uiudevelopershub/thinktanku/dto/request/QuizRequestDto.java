@@ -1,10 +1,5 @@
 package com.uiudevelopershub.thinktanku.dto.request;
 
-import com.uiudevelopershub.thinktanku.model.quizsession.QuizSession;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 
 

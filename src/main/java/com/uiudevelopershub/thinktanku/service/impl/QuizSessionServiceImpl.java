@@ -1,7 +1,7 @@
 package com.uiudevelopershub.thinktanku.service.impl;
 
+
 import com.uiudevelopershub.thinktanku.dto.request.QuizSessionRequestDto;
-import com.uiudevelopershub.thinktanku.dto.response.CustomUserResponseDTO;
 import com.uiudevelopershub.thinktanku.dto.response.QuizSessionResponseDto;
 import com.uiudevelopershub.thinktanku.model.quizsession.QuizSession;
 import com.uiudevelopershub.thinktanku.repository.quizSessionRepo.QuizSessionRepo;
@@ -13,7 +13,7 @@ import java.util.Objects;
 @Service
 public class QuizSessionServiceImpl implements QuizSessionService {
 
-   public  QuizSessionRepo quizSessionRepo;
+   public QuizSessionRepo quizSessionRepo;
 
     @Autowired
     public QuizSessionServiceImpl(QuizSessionRepo quizSessionRepo) {

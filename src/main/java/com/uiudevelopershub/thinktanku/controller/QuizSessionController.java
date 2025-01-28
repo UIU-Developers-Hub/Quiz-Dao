@@ -1,5 +1,6 @@
 package com.uiudevelopershub.thinktanku.controller;
 
+
 import com.uiudevelopershub.thinktanku.dto.request.QuizSessionRequestDto;
 import com.uiudevelopershub.thinktanku.dto.response.QuizSessionResponseDto;
 import com.uiudevelopershub.thinktanku.service.QuizSessionService;
@@ -19,7 +20,7 @@ public class QuizSessionController {
 
     @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     @PostMapping("Create")
-    public String  create(@RequestBody  QuizSessionRequestDto quizSessionRequestDto) {
+    public String  create(@RequestBody QuizSessionRequestDto quizSessionRequestDto) {
         quizSessionService.CreateQuizSession(quizSessionRequestDto);
         return "Quiz session created";
     }
@@ -31,7 +32,7 @@ public class QuizSessionController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<QuizSessionResponseDto>getById(@PathVariable Long id) {
+    public ResponseEntity<QuizSessionResponseDto> getById(@PathVariable Long id) {
       return ResponseEntity.ok(quizSessionService.GetQuizSessionById(id));
     }
 }
