@@ -5,6 +5,9 @@ import com.uiudevelopershub.thinktanku.model.quizresult.QuizResult;
 import com.uiudevelopershub.thinktanku.repository.quizresultrepo.QuizResultRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
 
 @Service
 public class QuizResultServiceImpl {
@@ -16,16 +19,18 @@ public class QuizResultServiceImpl {
         this.quizResultRepository = quizResultRepository;
     }
 
+    @Transactional
     public void submitAnswer(Long userId, Long quizSessionId, Long questionId, String userAnswer) {
         boolean isCorrect = checkAnswer(questionId, userAnswer);
-//
-//        QuizResult quizResult = new QuizResult();
+
+        QuizResult quizResult = new QuizResult(userId,quizSessionId,questionId,isCorrect,LocalDateTime.now());
 //        quizResult.setUserId(userId);
 //        quizResult.setQuizSessionId(quizSessionId);
 //        quizResult.setQuestionId(questionId);
 //        quizResult.setIsCorrect(isCorrect);
-//
-//        quizResultRepository.save(quizResult);
+//        quizResult.setTime(LocalDateTime.now());
+
+        quizResultRepository.save(quizResult);
     }
 
     public long countCorrectAnswers(Long quizSessionId, Long userId) {
@@ -39,6 +44,6 @@ public class QuizResultServiceImpl {
 
     private String getCorrectAnswerFromDB(Long questionId) {
 // Implement the logic to fetch the correct answer from the database
-        return "correct_answer"; // Placeholder
+        return "correct_answer";
     }
 }
