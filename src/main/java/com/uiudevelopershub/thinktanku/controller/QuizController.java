@@ -16,7 +16,7 @@ public class QuizController {
     public QuizController(QuizService quizService) {
         this.quizService = quizService;
     }
-    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
+//    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     @PostMapping("Create")
     public String createQuiz(QuizRequestDto quizRequestDto) {
         quizService.createQuiz(quizRequestDto);
@@ -38,7 +38,7 @@ public class QuizController {
 //        return ResponseEntity.ok(quizService.getAllQuiz(pageNo, pageSize));
 //    }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
+//    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     @DeleteMapping("{id}")
     public String DeleteQuiz(@PathVariable  Long id) {
         quizService.DeleteQuiz(id);

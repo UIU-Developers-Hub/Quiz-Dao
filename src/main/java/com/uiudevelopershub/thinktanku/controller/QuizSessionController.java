@@ -18,13 +18,13 @@ public class QuizSessionController {
         this.quizSessionService = quizSessionService;
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
+//    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     @PostMapping("Create")
     public String  create(@RequestBody QuizSessionRequestDto quizSessionRequestDto) {
         quizSessionService.CreateQuizSession(quizSessionRequestDto);
         return "Quiz session created";
     }
-    @PreAuthorize("hasAnyRole('ADMIN')")
+//    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("{id}")
     public String Delete(@PathVariable Long id) {
         quizSessionService.DeleteQuizSessionById(id);

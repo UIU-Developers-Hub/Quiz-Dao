@@ -1,7 +1,10 @@
 package com.uiudevelopershub.thinktanku.service.impl;
 
 
+import com.uiudevelopershub.thinktanku.auth.repository.UserRepo;
+import com.uiudevelopershub.thinktanku.model.quiz.Quiz;
 import com.uiudevelopershub.thinktanku.model.quizresult.QuizResult;
+import com.uiudevelopershub.thinktanku.repository.quizRepo.QuizRepo;
 import com.uiudevelopershub.thinktanku.repository.quizresultrepo.QuizResultRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +16,12 @@ import java.time.LocalDateTime;
 public class QuizResultServiceImpl {
 
     private final QuizResultRepo quizResultRepository;
+    private final QuizRepo quizRepo;
 
     @Autowired
-    public QuizResultServiceImpl(QuizResultRepo quizResultRepository) {
+    public QuizResultServiceImpl(QuizResultRepo quizResultRepository,QuizRepo quizRepo) {
         this.quizResultRepository = quizResultRepository;
+        this.quizRepo = quizRepo;
     }
 
     @Transactional
@@ -43,7 +48,7 @@ public class QuizResultServiceImpl {
     }
 
     private String getCorrectAnswerFromDB(Long questionId) {
-// Implement the logic to fetch the correct answer from the database
-        return "correct_answer";
+       Quiz quiz= quizRepo.findById(questionId).get();
+        return quiz.getQuestionAnswer();
     }
 }
