@@ -23,12 +23,12 @@ public class QuizResultServiceImpl {
     public void submitAnswer(Long userId, Long quizSessionId, Long questionId, String userAnswer) {
         boolean isCorrect = checkAnswer(questionId, userAnswer);
 
-        QuizResult quizResult = new QuizResult(userId,quizSessionId,questionId,isCorrect,LocalDateTime.now());
-//        quizResult.setUserId(userId);
-//        quizResult.setQuizSessionId(quizSessionId);
-//        quizResult.setQuestionId(questionId);
-//        quizResult.setIsCorrect(isCorrect);
-//        quizResult.setTime(LocalDateTime.now());
+        QuizResult quizResult = new QuizResult();
+        quizResult.setUserId(userId);
+        quizResult.setQuizSessionId(quizSessionId);
+        quizResult.setQuestionId(questionId);
+        quizResult.setIsCorrect(isCorrect);
+        quizResult.setTime(LocalDateTime.now());
 
         quizResultRepository.save(quizResult);
     }

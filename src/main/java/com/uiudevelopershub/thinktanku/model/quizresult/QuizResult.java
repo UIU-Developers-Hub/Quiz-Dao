@@ -30,12 +30,12 @@ public class QuizResult {
     @Column(nullable = false)
     private LocalDateTime time;
 
-    public QuizResult(Long userId, Long quizSessionId, Long questionId, boolean isCorrect, LocalDateTime now) {
-
-   this.userId = userId;
-    this.quizSessionId = quizSessionId;
-    this.questionId = questionId;
-    this.isCorrect = isCorrect;
-    this.time = now;
-    }
+//    public QuizResult(Long userId, Long quizSessionId, Long questionId, boolean isCorrect, LocalDateTime now) {
+//
+//   this.userId = userId;
+//    this.quizSessionId = quizSessionId;
+//    this.questionId = questionId;
+//    this.isCorrect = isCorrect;
+//    this.time = now;
+//    }
 }
