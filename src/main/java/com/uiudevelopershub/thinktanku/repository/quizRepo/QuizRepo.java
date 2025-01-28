@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface QuizRepo extends JpaRepository<Quiz, Long> {
-
 //    @Query("SELECT q FROM Quiz q ORDER BY q.questionTitle ASC")
 //    Page<Quiz> findAllWithPaginationOrdered(Pageable pageable);
 }
