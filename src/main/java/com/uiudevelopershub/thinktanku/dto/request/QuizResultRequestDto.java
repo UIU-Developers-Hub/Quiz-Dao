@@ -12,6 +12,8 @@ public record QuizResultRequestDto(
 
     Boolean isCorrect,
 
+    String answer,
+
     LocalDateTime time
 
 ) {

@@ -1,5 +1,8 @@
 package com.uiudevelopershub.thinktanku.model.quizresult;
 
+import com.uiudevelopershub.thinktanku.auth.model.User;
+import com.uiudevelopershub.thinktanku.model.quiz.Quiz;
+import com.uiudevelopershub.thinktanku.model.quizsession.QuizSession;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -10,19 +13,22 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 public class QuizResult {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(nullable = false)
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    private User user;
 
-    @Column(nullable = false)
-    private Long quizSessionId;
+    @ManyToOne
+    @JoinColumn(name = "quiz_session_id", referencedColumnName = "id", nullable = false)
+    private QuizSession quizSession;
 
-    @Column(nullable = false)
-    private Long questionId;
+    @ManyToOne
+    @JoinColumn(name = "quiz_id", referencedColumnName = "id", nullable = false)
+    private Quiz quiz;
 
     @Column(nullable = false)
     private Boolean isCorrect;
@@ -30,12 +36,6 @@ public class QuizResult {
     @Column(nullable = false)
     private LocalDateTime time;
 
-//    public QuizResult(Long userId, Long quizSessionId, Long questionId, boolean isCorrect, LocalDateTime now) {
-//
-//   this.userId = userId;
-//    this.quizSessionId = quizSessionId;
-//    this.questionId = questionId;
-//    this.isCorrect = isCorrect;
-//    this.time = now;
-//    }
+    private String userAnswer;
 }
+

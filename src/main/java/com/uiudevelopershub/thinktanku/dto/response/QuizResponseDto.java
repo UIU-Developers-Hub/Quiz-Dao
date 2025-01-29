@@ -13,4 +13,6 @@ public interface QuizResponseDto {
 
     String getOptionFour();
 
+    String getQuestionAnswer();
+
 }

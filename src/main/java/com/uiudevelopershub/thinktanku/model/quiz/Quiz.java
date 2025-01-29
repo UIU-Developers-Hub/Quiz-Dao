@@ -1,5 +1,6 @@
 package com.uiudevelopershub.thinktanku.model.quiz;
 
+import com.uiudevelopershub.thinktanku.model.quizresult.QuizResult;
 import com.uiudevelopershub.thinktanku.model.quizsession.QuizSession;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.Setter;
 import org.hibernate.proxy.HibernateProxy;
 
 
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -61,4 +63,7 @@ public class Quiz {
     public final int hashCode( ) {
         return this instanceof HibernateProxy ? ( ( HibernateProxy ) this ).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
     }
+
+        @OneToMany(mappedBy = "quiz")  // 'quiz' refers to the field in QuizResult class
+       private List<QuizResult> quizResults;
 }

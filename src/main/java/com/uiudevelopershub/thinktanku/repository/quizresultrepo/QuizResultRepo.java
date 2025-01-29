@@ -12,9 +12,9 @@ import java.util.List;
 @Repository
 public interface QuizResultRepo  extends JpaRepository<QuizResult, Long> {
 
-    @Query("SELECT COUNT(q) FROM QuizResult q WHERE q.quizSessionId = :quizSessionId AND q.userId = :userId AND q.isCorrect = true")
+    @Query("SELECT COUNT(q) FROM QuizResult q WHERE q.quizSession.id = :quizSessionId AND q.user.id = :userId AND q.isCorrect = true")
     long countByQuizSessionIdAndUserIdAndIsCorrect(@Param("quizSessionId") Long quizSessionId, @Param("userId") Long userId);
 
-    @Query("SELECT  q FROM QuizResult q WHERE q.quizSessionId = :quizSessionId AND q.userId = :userId ")
+    @Query("SELECT  q FROM QuizResult q WHERE q.quizSession.id = :quizSessionId AND q.user.id= :userId ")
     List<QuizResultResponseDto> QuizSessionIdAndUserIdAndIsCorrect(@Param("quizSessionId") Long quizSessionId, @Param("userId") Long userId);
 }

@@ -2,6 +2,7 @@ package com.uiudevelopershub.thinktanku.model.quizsession;
 
 
 import com.uiudevelopershub.thinktanku.model.quiz.Quiz;
+import com.uiudevelopershub.thinktanku.model.quizresult.QuizResult;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -36,6 +38,7 @@ public class QuizSession {
     @OneToMany( mappedBy = "quizSession", cascade = CascadeType.ALL, orphanRemoval = true )
     private Set<Quiz> quizzes = new HashSet<>();
 
-
+    @OneToMany(mappedBy = "quizSession")  // 'quizSession' refers to the field in QuizResult class
+    private List<QuizResult> quizResults;
 
 }
