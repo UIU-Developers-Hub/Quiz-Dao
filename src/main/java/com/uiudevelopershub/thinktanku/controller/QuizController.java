@@ -2,10 +2,13 @@ package com.uiudevelopershub.thinktanku.controller;
 
 import com.uiudevelopershub.thinktanku.dto.request.QuizRequestDto;
 import com.uiudevelopershub.thinktanku.dto.response.PageResponseDto;
+import com.uiudevelopershub.thinktanku.dto.response.QuizResponseDto;
 import com.uiudevelopershub.thinktanku.service.QuizService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("Quiz")
@@ -43,6 +46,11 @@ public class QuizController {
     public String DeleteQuiz(@PathVariable  Long id) {
         quizService.DeleteQuiz(id);
         return "Quiz deleted";
+    }
+
+    @GetMapping("quizSession/{quizSessionId}")
+    public ResponseEntity<List<QuizResponseDto>>getAllByQuizSessionId(@PathVariable Long quizSessionId) {
+        return ResponseEntity.ok(quizService.findAllQuizByQuizSessionId(quizSessionId));
     }
 
 }

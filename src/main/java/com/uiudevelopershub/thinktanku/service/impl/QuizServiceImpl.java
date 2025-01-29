@@ -2,6 +2,7 @@ package com.uiudevelopershub.thinktanku.service.impl;
 
 import com.uiudevelopershub.thinktanku.dto.request.QuizRequestDto;
 import com.uiudevelopershub.thinktanku.dto.response.PageResponseDto;
+import com.uiudevelopershub.thinktanku.dto.response.QuizResponseDto;
 import com.uiudevelopershub.thinktanku.model.quiz.Quiz;
 import com.uiudevelopershub.thinktanku.repository.quizRepo.QuizRepo;
 import com.uiudevelopershub.thinktanku.repository.quizSessionRepo.QuizSessionRepo;
@@ -89,4 +90,10 @@ public class QuizServiceImpl implements QuizService {
     public void DeleteQuiz(Long id) {
         quizRepo.deleteById(id);
     }
+
+    public List<QuizResponseDto>findAllQuizByQuizSessionId(Long quizSessionId) {
+        return quizRepo.findAllQuizByQuizSessionId(quizSessionId);
+    }
+
+
 }

@@ -1,7 +1,7 @@
 package com.uiudevelopershub.thinktanku.dto.response;
 
 public interface QuizResponseDto {
-    Long getQuizId();
+    Long getId();
 
     String getQuestionTitle();
 
