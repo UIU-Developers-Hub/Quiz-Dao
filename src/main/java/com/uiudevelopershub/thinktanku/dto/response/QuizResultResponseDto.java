@@ -1,12 +1,13 @@
 package com.uiudevelopershub.thinktanku.dto.response;
 
 public  interface QuizResultResponseDto {
+    Long getId();
 
     Long getUserId();
 
-    Long getQuizId();
+    Long getQuizSessionId();
 
-    Long getQuestionSessionId();
+    Long getQuestionId();
 
     Boolean getIsCorrect();
 

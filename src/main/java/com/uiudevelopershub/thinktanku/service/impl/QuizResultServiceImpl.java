@@ -2,18 +2,21 @@ package com.uiudevelopershub.thinktanku.service.impl;
 
 
 import com.uiudevelopershub.thinktanku.auth.repository.UserRepo;
+import com.uiudevelopershub.thinktanku.dto.response.QuizResultResponseDto;
 import com.uiudevelopershub.thinktanku.model.quiz.Quiz;
 import com.uiudevelopershub.thinktanku.model.quizresult.QuizResult;
 import com.uiudevelopershub.thinktanku.repository.quizRepo.QuizRepo;
 import com.uiudevelopershub.thinktanku.repository.quizresultrepo.QuizResultRepo;
+import com.uiudevelopershub.thinktanku.service.QuizResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
-public class QuizResultServiceImpl {
+public class QuizResultServiceImpl implements QuizResultService {
 
     private final QuizResultRepo quizResultRepository;
     private final QuizRepo quizRepo;
@@ -38,6 +41,11 @@ public class QuizResultServiceImpl {
         quizResultRepository.save(quizResult);
     }
 
+    @Override
+    public long countCorrectAnswers(Long quizSessionId) {
+        return 0;
+    }
+
     public long countCorrectAnswers(Long quizSessionId, Long userId) {
         return quizResultRepository.countByQuizSessionIdAndUserIdAndIsCorrect(quizSessionId, userId);
     }
@@ -50,5 +58,9 @@ public class QuizResultServiceImpl {
     private String getCorrectAnswerFromDB(Long questionId) {
        Quiz quiz= quizRepo.findById(questionId).get();
         return quiz.getQuestionAnswer();
+    }
+
+    public List<QuizResultResponseDto> getCorrectAnswerById(Long quizSessionId, Long userId) {
+        return quizResultRepository.QuizSessionIdAndUserIdAndIsCorrect(quizSessionId, userId);
     }
 }
