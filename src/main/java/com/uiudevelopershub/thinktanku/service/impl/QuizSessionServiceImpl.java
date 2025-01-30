@@ -1,6 +1,7 @@
 package com.uiudevelopershub.thinktanku.service.impl;
 
 import com.uiudevelopershub.thinktanku.dto.request.QuizSessionRequestDto;
+import com.uiudevelopershub.thinktanku.dto.response.QuizSessionGetAllResponse;
 import com.uiudevelopershub.thinktanku.dto.response.QuizSessionResponseDto;
 import com.uiudevelopershub.thinktanku.model.quizsession.QuizSession;
 import com.uiudevelopershub.thinktanku.repository.quizSessionRepo.QuizSessionRepo;
@@ -8,6 +9,7 @@ import com.uiudevelopershub.thinktanku.service.QuizSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 @Service
 public class QuizSessionServiceImpl implements QuizSessionService {
@@ -39,5 +41,10 @@ public class QuizSessionServiceImpl implements QuizSessionService {
     @Override
     public void DeleteQuizSessionById(Long quizSessionId) {
       quizSessionRepo.deleteById(quizSessionId);
+    }
+
+    @Override
+    public List<QuizSessionGetAllResponse> QuizSessionGetAll() {
+        return quizSessionRepo.quizSessionGetAll() ;
     }
 }

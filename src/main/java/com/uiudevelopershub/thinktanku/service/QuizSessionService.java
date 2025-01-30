@@ -2,7 +2,10 @@ package com.uiudevelopershub.thinktanku.service;
 
 
 import com.uiudevelopershub.thinktanku.dto.request.QuizSessionRequestDto;
+import com.uiudevelopershub.thinktanku.dto.response.QuizSessionGetAllResponse;
 import com.uiudevelopershub.thinktanku.dto.response.QuizSessionResponseDto;
+
+import java.util.List;
 
 public interface QuizSessionService {
 
@@ -12,5 +15,5 @@ public interface QuizSessionService {
 
     void DeleteQuizSessionById(Long quizSessionId);
 
-
+    List<QuizSessionGetAllResponse> QuizSessionGetAll();
 }
