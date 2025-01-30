@@ -20,7 +20,6 @@ public class QuizSessionController {
     public QuizSessionController(QuizSessionService quizSessionService) {
         this.quizSessionService = quizSessionService;
     }
-
 //    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     @PostMapping("Create")
     public String  create(@RequestBody QuizSessionRequestDto quizSessionRequestDto) {
