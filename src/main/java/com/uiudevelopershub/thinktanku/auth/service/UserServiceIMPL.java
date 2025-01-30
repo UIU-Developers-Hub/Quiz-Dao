@@ -65,13 +65,16 @@ public class UserServiceIMPL implements UserService {
 
 
     public void create(UserRequestDTO requestDto) {
+       User user1 =userRepository.findByUsername(requestDto.username());
+       if(Objects.isNull(user1)) {
+           User user = ConvertToEntity(new User(), requestDto);
 
-       User user = ConvertToEntity(new User(), requestDto);
+           userRepository.save(user);
 
-       userRepository.save(user);
-
-       userSSEService.emit( user );
-
+           userSSEService.emit( user );
+       }else{
+           throw new RuntimeException("User already exists");
+       }
     }
 
 
