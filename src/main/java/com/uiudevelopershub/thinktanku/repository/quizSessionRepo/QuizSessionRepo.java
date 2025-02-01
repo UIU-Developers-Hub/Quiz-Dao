@@ -29,4 +29,5 @@ public interface QuizSessionRepo extends JpaRepository<QuizSession, Long> {
             Select q from QuizSession q ORDER BY q.id DESC
             """)
     List<QuizSessionGetAllResponse> quizSessionGetAll();
+
 }

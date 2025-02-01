@@ -9,6 +9,8 @@ public interface QuizSessionResponseDto {
 
   //  String getSessionId();
 
+    Long getId();
+
     String getQuizSessionName();
 
     Set<QuizInfo> getQuizzes();
