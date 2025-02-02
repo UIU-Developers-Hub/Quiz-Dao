@@ -17,5 +17,5 @@ public interface QuizSessionService {
 
     List<QuizSessionGetAllResponse> QuizSessionGetAll();
 
-    QuizSessionGetAllResponse QuizSessionSearchByName(String name);
+    List<QuizSessionGetAllResponse> QuizSessionSearchByName(String name);
 }

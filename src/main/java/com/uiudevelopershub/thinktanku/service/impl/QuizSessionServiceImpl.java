@@ -49,7 +49,7 @@ public class QuizSessionServiceImpl implements QuizSessionService {
     }
 
     @Override
-    public QuizSessionGetAllResponse QuizSessionSearchByName(String name) {
+    public List<QuizSessionGetAllResponse> QuizSessionSearchByName(String name) {
         return quizSessionRepo.findQuizSessionByName(name );
     }
 }

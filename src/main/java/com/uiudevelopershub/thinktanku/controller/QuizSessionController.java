@@ -43,7 +43,7 @@ public class QuizSessionController {
     }
 
     @GetMapping("searchBy/{name}")
-    public ResponseEntity<QuizSessionGetAllResponse> getBySessionName(@PathVariable String name) {
+    public ResponseEntity<List<QuizSessionGetAllResponse>> getBySessionName(@PathVariable String name) {
         return ResponseEntity.ok(quizSessionService.QuizSessionSearchByName(name));
     }
 
