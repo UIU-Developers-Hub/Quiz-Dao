@@ -48,7 +48,7 @@ public class QuizController {
         return "Quiz deleted";
     }
 
-    @GetMapping("QuizSession/{quizSessionId}")
+    @GetMapping("QuizSession/{sessionId}")
     public ResponseEntity<List<QuizResponseDto>>getAllByQuizSessionId(@PathVariable Long quizSessionId) {
         return ResponseEntity.ok(quizService.findAllQuizByQuizSessionId(quizSessionId));
     }
