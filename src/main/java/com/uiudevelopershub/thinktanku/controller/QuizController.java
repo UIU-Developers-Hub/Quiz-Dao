@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("Quiz")
+//@RequestMapping("Quiz")
 public class QuizController {
 
     QuizService quizService;
@@ -48,7 +48,7 @@ public class QuizController {
         return "Quiz deleted";
     }
 
-    @GetMapping("quizSession/{quizSessionId}")
+    @GetMapping("QuizSession/{quizSessionId}")
     public ResponseEntity<List<QuizResponseDto>>getAllByQuizSessionId(@PathVariable Long quizSessionId) {
         return ResponseEntity.ok(quizService.findAllQuizByQuizSessionId(quizSessionId));
     }
