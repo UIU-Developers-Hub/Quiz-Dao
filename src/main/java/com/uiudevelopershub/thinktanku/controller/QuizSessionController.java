@@ -33,8 +33,8 @@ public class QuizSessionController {
         return "Quiz session deleted";
     }
 
-    @GetMapping("{userId}/{id}")
-    public ResponseEntity<QuizSessionResponseDto> getById(@PathVariable Long userId,@PathVariable Long id) {
+    @GetMapping("quiz/{userId}/{id}")
+    public ResponseEntity<QuizSessionResponseDto> getById(@PathVariable Long id) {
       return ResponseEntity.ok(quizSessionService.GetQuizSessionById(id));
     }
     @GetMapping("quizSession/getAll")
@@ -46,5 +46,11 @@ public class QuizSessionController {
     public ResponseEntity<List<QuizSessionGetAllResponse>> getBySessionName(@PathVariable String name) {
         return ResponseEntity.ok(quizSessionService.QuizSessionSearchByName(name));
     }
+
+    @GetMapping("{sessionId}")
+    public ResponseEntity<QuizSessionResponseDto> getByQuizSessionId(@PathVariable Long sessionId) {
+        return ResponseEntity.ok(quizSessionService.GetQuizSessionById(sessionId));
+    }
+
 
 }
