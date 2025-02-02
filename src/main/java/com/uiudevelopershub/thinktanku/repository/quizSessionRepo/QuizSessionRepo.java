@@ -31,13 +31,10 @@ public interface QuizSessionRepo extends JpaRepository<QuizSession, Long> {
     List<QuizSessionGetAllResponse> quizSessionGetAll();
 
 
-    @Query( """
-                SELECT
-                    q
-                FROM
-                   QuizSession q
-                WHERE
-                    q.QuizSessionName = :name
-            """ )
+    @Query("""
+       SELECT q 
+       FROM QuizSession q 
+       WHERE q.QuizSessionName LIKE %:name%
+       """)
     QuizSessionGetAllResponse findQuizSessionByName(@Param( "name" ) String name);
 }

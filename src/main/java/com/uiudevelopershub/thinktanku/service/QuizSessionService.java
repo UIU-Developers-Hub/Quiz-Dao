@@ -16,4 +16,6 @@ public interface QuizSessionService {
     void DeleteQuizSessionById(Long quizSessionId);
 
     List<QuizSessionGetAllResponse> QuizSessionGetAll();
+
+    QuizSessionGetAllResponse QuizSessionSearchByName(String name);
 }

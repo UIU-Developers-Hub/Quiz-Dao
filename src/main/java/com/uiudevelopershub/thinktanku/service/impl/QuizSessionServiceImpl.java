@@ -47,4 +47,9 @@ public class QuizSessionServiceImpl implements QuizSessionService {
     public List<QuizSessionGetAllResponse> QuizSessionGetAll() {
         return quizSessionRepo.quizSessionGetAll() ;
     }
+
+    @Override
+    public QuizSessionGetAllResponse QuizSessionSearchByName(String name) {
+        return quizSessionRepo.findQuizSessionByName(name );
+    }
 }
