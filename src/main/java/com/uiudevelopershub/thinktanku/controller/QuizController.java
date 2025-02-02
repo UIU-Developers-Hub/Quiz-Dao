@@ -49,8 +49,8 @@ public class QuizController {
     }
 
     @GetMapping("QuizSession/{sessionId}")
-    public ResponseEntity<List<QuizResponseDto>>getAllByQuizSessionId(@PathVariable Long quizSessionId) {
-        return ResponseEntity.ok(quizService.findAllQuizByQuizSessionId(quizSessionId));
+    public ResponseEntity<List<QuizResponseDto>>getAllByQuizSessionId(@PathVariable Long sessionId) {
+        return ResponseEntity.ok(quizService.findAllQuizByQuizSessionId(sessionId));
     }
 
 }
