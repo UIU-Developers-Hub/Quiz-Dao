@@ -67,6 +67,12 @@ public class QuizResultServiceImpl implements QuizResultService {
     }
 
     public List<QuizResultResponseDto> getCorrectAnswerById(Long quizSessionId, Long userId) {
-        return quizResultRepository.QuizSessionIdAndUserIdAndIsCorrect(quizSessionId, userId);
+        List<QuizResultResponseDto>quizResultResponseDto=   quizResultRepository.QuizSessionIdAndUserIdAndIsCorrect(quizSessionId, userId);
+   if(quizResultResponseDto.isEmpty()){
+       throw new RuntimeException("user havent give any answers");
+   }else {
+       return quizResultResponseDto;
+   }
+
     }
 }
