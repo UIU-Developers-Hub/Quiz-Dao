@@ -3,6 +3,7 @@ package com.uiudevelopershub.thinktanku.service.impl;
 
 import com.uiudevelopershub.thinktanku.auth.repository.UserRepo;
 import com.uiudevelopershub.thinktanku.dto.response.QuizResultResponseDto;
+import com.uiudevelopershub.thinktanku.dto.response.UserCorrectAnswerResponse;
 import com.uiudevelopershub.thinktanku.model.quiz.Quiz;
 import com.uiudevelopershub.thinktanku.model.quizresult.QuizResult;
 import com.uiudevelopershub.thinktanku.repository.quizRepo.QuizRepo;
@@ -10,7 +11,7 @@ import com.uiudevelopershub.thinktanku.repository.quizSessionRepo.QuizSessionRep
 import com.uiudevelopershub.thinktanku.repository.quizresultrepo.QuizResultRepo;
 import com.uiudevelopershub.thinktanku.service.QuizResultService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,13 +48,16 @@ public class QuizResultServiceImpl implements QuizResultService {
         quizResultRepository.save(quizResult);
     }
 
-    @Override
-    public long countCorrectAnswers(Long quizSessionId) {
-        return 0;
-    }
 
-    public long countCorrectAnswers(Long quizSessionId, Long userId) {
-        return quizResultRepository.countByQuizSessionIdAndUserIdAndIsCorrect(quizSessionId, userId);
+    public List<UserCorrectAnswerResponse> getCorrectAnswersBySession(Long sessionId) {
+        List<Object[]> results = quizResultRepository.findCorrectAnswerCountsGroupedByUserAndSession(sessionId);
+
+        return results.stream()
+                .map(result -> new UserCorrectAnswerResponse(
+                        (Long) result[0], // userId
+                        (Long) result[1]  // correct count
+                ))
+                .toList();
     }
 
     private boolean checkAnswer(Long questionId, String userAnswer) {
