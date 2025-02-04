@@ -35,6 +35,9 @@ public class QuizResultController {
 //        return ResponseEntity.ok().body(correctAnswersCount);
 //    }
 
+
+
+//quizSubmission logic done with showing 500 to let user give quiz and 200 to directly showing the result page
     @GetMapping("{quizSessionId}/{userId}")
     public ResponseEntity<List<QuizResultResponseDto>>findQuizResultById(@PathVariable Long quizSessionId, @PathVariable Long userId) {
         return ResponseEntity.ok(quizResultService.getCorrectAnswerById(quizSessionId, userId));
