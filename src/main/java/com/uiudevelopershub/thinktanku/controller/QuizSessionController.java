@@ -52,5 +52,4 @@ public class QuizSessionController {
         return ResponseEntity.ok(quizSessionService.GetQuizSessionById(sessionId));
     }
 
-
 }
