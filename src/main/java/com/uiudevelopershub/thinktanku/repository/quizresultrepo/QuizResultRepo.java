@@ -12,10 +12,10 @@ import java.util.List;
 @Repository
 public interface QuizResultRepo  extends JpaRepository<QuizResult, Long> {
 
-    @Query("SELECT q.user.id, COUNT(q) " +
+    @Query("SELECT q.user.id,q.user.username, COUNT(q) " +
             "FROM QuizResult q " +
             "WHERE q.quizSession.id = :quizSessionId AND q.isCorrect = true " +
-            "GROUP BY q.user.id " +
+            "GROUP BY q.user.id,q.user.username " +
             "ORDER BY COUNT(q) DESC")
     List<Object[]> findCorrectAnswerCountsGroupedByUserAndSession(@Param("quizSessionId") Long quizSessionId);
 

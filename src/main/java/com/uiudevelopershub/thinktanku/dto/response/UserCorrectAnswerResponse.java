@@ -5,10 +5,12 @@ import lombok.Data;
 @Data
 public class UserCorrectAnswerResponse {
     private Long userId;
+    private String userName;
     private Long correctCount;
 
-    public UserCorrectAnswerResponse(Long userId, Long correctCount) {
+    public UserCorrectAnswerResponse(Long userId,String userName, Long correctCount) {
         this.userId = userId;
+        this.userName = userName;
         this.correctCount = correctCount;
     }
 

@@ -55,7 +55,8 @@ public class QuizResultServiceImpl implements QuizResultService {
         return results.stream()
                 .map(result -> new UserCorrectAnswerResponse(
                         (Long) result[0], // userId
-                        (Long) result[1]  // correct count
+                        (String) result[1] ,
+                        (Long) result[2] // correct count
                 ))
                 .toList();
     }
