@@ -8,24 +8,33 @@ import com.uiudevelopershub.thinktanku.repository.quizSessionRepo.QuizSessionRep
 import com.uiudevelopershub.thinktanku.service.QuizSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 @Service
 public class QuizSessionServiceImpl implements QuizSessionService {
 
    public QuizSessionRepo quizSessionRepo;
+    public CloudneryImageServiceImpl cloudneryImageService;
 
     @Autowired
-    public QuizSessionServiceImpl(QuizSessionRepo quizSessionRepo) {
+    public QuizSessionServiceImpl(QuizSessionRepo quizSessionRepo, CloudneryImageServiceImpl cloudneryImageService) {
         this.quizSessionRepo = quizSessionRepo;
+        this.cloudneryImageService = cloudneryImageService;
     }
 
 
     @Override
-    public void CreateQuizSession(QuizSessionRequestDto quizSessionRequestDto) {
+    public void CreateQuizSession(QuizSessionRequestDto quizSessionRequestDto, MultipartFile heroImageFile) throws IOException {
         QuizSession quizSession = new QuizSession();
+        Map<String, Object> heroUploadResult = cloudneryImageService.upload(heroImageFile);
+        String heroImageUrl = (String) heroUploadResult.get("secure_url");
+
         quizSession.setQuizSessionName(quizSessionRequestDto.QuizSessionName());
+        quizSession.setImageUrl(heroImageUrl);
         quizSessionRepo.save(quizSession);
     }
 

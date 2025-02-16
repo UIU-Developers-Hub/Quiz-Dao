@@ -35,6 +35,8 @@ public class QuizSession {
     @Column( nullable = false )
     private String QuizSessionName;
 
+    private String imageUrl;
+
     @OneToMany( mappedBy = "quizSession", cascade = CascadeType.ALL, orphanRemoval = true )
     private Set<Quiz> quizzes = new HashSet<>();
 

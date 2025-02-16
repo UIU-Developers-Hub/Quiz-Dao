@@ -5,4 +5,5 @@ public interface QuizSessionGetAllResponse {
          Long getId();
 
         String getQuizSessionName();
+        String getImageUrl();
 }
