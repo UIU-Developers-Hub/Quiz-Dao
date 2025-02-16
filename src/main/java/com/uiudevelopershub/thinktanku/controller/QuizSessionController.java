@@ -26,16 +26,16 @@ public class QuizSessionController {
 
     //    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     @PostMapping(value = "/create", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public String create(@ModelAttribute QuizSessionRequestDto quizSessionRequestDto) throws IOException {
+    public ResponseEntity<String> create(@ModelAttribute QuizSessionRequestDto quizSessionRequestDto) throws IOException {
         quizSessionService.CreateQuizSession(quizSessionRequestDto, quizSessionRequestDto.imageUrl());
-        return "Quiz session created";
+        return ResponseEntity.ok("Quiz session created");
     }
 
     //    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("{id}")
-    public String Delete(@PathVariable Long id) {
+    public ResponseEntity<String> Delete(@PathVariable Long id) {
         quizSessionService.DeleteQuizSessionById(id);
-        return "Quiz session deleted";
+        return ResponseEntity.ok("Quiz session deleted");
     }
 
     @GetMapping("quiz/{userId}/{id}")
