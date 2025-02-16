@@ -32,9 +32,10 @@ public interface QuizSessionRepo extends JpaRepository<QuizSession, Long> {
 
 
     @Query("""
-       SELECT q 
-       FROM QuizSession q 
-       WHERE q.QuizSessionName LIKE %:name%
-       """)
-   List<QuizSessionGetAllResponse> findQuizSessionByName(@Param( "name" ) String name);
+   SELECT q 
+   FROM QuizSession q 
+   WHERE LOWER(q.QuizSessionName) LIKE LOWER(CONCAT('%', :name, '%'))
+   """)
+    List<QuizSessionGetAllResponse> findQuizSessionByName(@Param("name") String name);
+
 }

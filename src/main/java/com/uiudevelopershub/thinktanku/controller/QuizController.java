@@ -19,11 +19,13 @@ public class QuizController {
     public QuizController(QuizService quizService) {
         this.quizService = quizService;
     }
+
+
 //    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     @PostMapping("Create")
-    public String createQuiz(QuizRequestDto quizRequestDto) {
+    public ResponseEntity<String> createQuiz(QuizRequestDto quizRequestDto) {
         quizService.createQuiz(quizRequestDto);
-        return "Quiz created";
+        return ResponseEntity.ok("Quiz created");
     }
 
 //    @GetMapping("Get-All")
@@ -43,9 +45,9 @@ public class QuizController {
 
 //    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     @DeleteMapping("{id}")
-    public String DeleteQuiz(@PathVariable  Long id) {
+    public ResponseEntity<String> DeleteQuiz(@PathVariable  Long id) {
         quizService.DeleteQuiz(id);
-        return "Quiz deleted";
+        return ResponseEntity.ok("Quiz deleted");
     }
 
     @GetMapping("quizSession/{quizSessionId}")

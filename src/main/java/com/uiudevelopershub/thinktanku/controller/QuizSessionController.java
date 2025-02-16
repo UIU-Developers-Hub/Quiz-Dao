@@ -6,37 +6,43 @@ import com.uiudevelopershub.thinktanku.dto.response.QuizSessionGetAllResponse;
 import com.uiudevelopershub.thinktanku.dto.response.QuizSessionResponseDto;
 import com.uiudevelopershub.thinktanku.service.QuizSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
 @RequestMapping("QuizSession")
 public class QuizSessionController {
     public QuizSessionService quizSessionService;
+
     @Autowired
     public QuizSessionController(QuizSessionService quizSessionService) {
         this.quizSessionService = quizSessionService;
     }
-//    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
-    @PostMapping("Create")
-    public String  create(@RequestBody QuizSessionRequestDto quizSessionRequestDto) {
-        quizSessionService.CreateQuizSession(quizSessionRequestDto);
-        return "Quiz session created";
+
+    //    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
+    @PostMapping(value = "/create", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<String> create(@ModelAttribute QuizSessionRequestDto quizSessionRequestDto) throws IOException {
+        quizSessionService.CreateQuizSession(quizSessionRequestDto, quizSessionRequestDto.imageUrl());
+        return ResponseEntity.ok("Quiz session created");
     }
-//    @PreAuthorize("hasAnyRole('ADMIN')")
+
+    //    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("{id}")
-    public String Delete(@PathVariable Long id) {
+    public ResponseEntity<String> Delete(@PathVariable Long id) {
         quizSessionService.DeleteQuizSessionById(id);
-        return "Quiz session deleted";
+        return ResponseEntity.ok("Quiz session deleted");
     }
 
     @GetMapping("quiz/{userId}/{id}")
     public ResponseEntity<QuizSessionResponseDto> getById(@PathVariable Long id) {
-      return ResponseEntity.ok(quizSessionService.GetQuizSessionById(id));
+        return ResponseEntity.ok(quizSessionService.GetQuizSessionById(id));
     }
+
     @GetMapping("quizSession/getAll")
     public ResponseEntity<List<QuizSessionGetAllResponse>> getAll() {
         return ResponseEntity.ok(quizSessionService.QuizSessionGetAll());

@@ -31,8 +31,8 @@ public class QuizResultController {
     }
 
     @GetMapping("/results/{sessionId}")
-    public List<UserCorrectAnswerResponse> getResultsBySession(@PathVariable Long sessionId) {
-        return quizResultService.getCorrectAnswersBySession(sessionId);
+    public ResponseEntity<List<UserCorrectAnswerResponse>> getResultsBySession(@PathVariable Long sessionId) {
+        return ResponseEntity.ok(quizResultService.getCorrectAnswersBySession(sessionId));
     }
 
 
