@@ -14,6 +14,7 @@ public class KeepAliveScheduler {
     private static final String HEALTHCHECK_URL = "https://quiz-dao-ddd7.onrender.com/healthcheck";
 
 
+
     @Scheduled(fixedRate = 300000) // Every 5 minutes
     public void pingBackend() {
         try {
