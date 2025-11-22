@@ -69,22 +69,22 @@ public class QuizServiceImpl implements QuizService {
         quizRepo.save(quiz1);
     }
 
-//    @Override
-//    public PageResponseDto getAllQuiz(int pageNo, int pageSize) {
-//        Pageable pageable= PageRequest.of(pageNo-1, pageSize);
-//        Page<Quiz> quizPage = quizRepo.findAllWithPaginationOrdered(pageable);
-//        List<QuizRequestDto> quizRequestDtoList = quizPage.getContent().stream()
-//                .map(this::mapToDto)
-//                .collect(Collectors.toList());
-//        PageResponseDto pageResponseDto = new PageResponseDto();
-//        pageResponseDto.setContent(quizRequestDtoList);
-//        pageResponseDto.setPageSize(quizPage.getSize());
-//        pageResponseDto.setPageNo(quizPage.getNumber());
-//        pageResponseDto.setTotalElements(quizPage.getTotalElements());
-//        pageResponseDto.setTotalPages(quizPage.getTotalPages());
-//        pageResponseDto.setLast(quizPage.isLast());
-//        return pageResponseDto;
-//    }
+   @Override
+   public PageResponseDto getAllQuiz(int pageNo, int pageSize) {
+       Pageable pageable= PageRequest.of(pageNo-1, pageSize);
+       Page<Quiz> quizPage = quizRepo.findAllWithPaginationOrdered(pageable);
+       List<QuizRequestDto> quizRequestDtoList = quizPage.getContent().stream()
+               .map(this::mapToDto)
+               .collect(Collectors.toList());
+       PageResponseDto pageResponseDto = new PageResponseDto();
+       pageResponseDto.setContent(quizRequestDtoList);
+       pageResponseDto.setPageSize(quizPage.getSize());
+       pageResponseDto.setPageNo(quizPage.getNumber());
+       pageResponseDto.setTotalElements(quizPage.getTotalElements());
+       pageResponseDto.setTotalPages(quizPage.getTotalPages());
+       pageResponseDto.setLast(quizPage.isLast());
+       return pageResponseDto;
+   }
 
     @Override
     public void DeleteQuiz(Long id) {
