@@ -27,11 +27,11 @@ public class QuizResultServiceImpl implements QuizResultService {
     private final UserRepo userRepo;
     private final QuizSessionRepo quizSessionRepo;
 
-//    @Autowired
-//    public QuizResultServiceImpl(QuizResultRepo quizResultRepository,QuizRepo quizRepo) {
-//        this.quizResultRepository = quizResultRepository;
-//        this.quizRepo = quizRepo;
-//    }
+   @Autowired
+   public QuizResultServiceImpl(QuizResultRepo quizResultRepository,QuizRepo quizRepo) {
+       this.quizResultRepository = quizResultRepository;
+       this.quizRepo = quizRepo;
+   }
 
     @Transactional
     public void submitAnswer(Long userId, Long quizSessionId, Long questionId, String userAnswer) {

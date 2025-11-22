@@ -21,29 +21,29 @@ public class QuizController {
     }
 
 
-//    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
+   @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     @PostMapping("Create")
     public ResponseEntity<String> createQuiz(QuizRequestDto quizRequestDto) {
         quizService.createQuiz(quizRequestDto);
         return ResponseEntity.ok("Quiz created");
     }
 
-//    @GetMapping("Get-All")
-//    public ResponseEntity<PageResponseDto>getQuizList(
-//            @RequestParam(value = "pageNo",
-//            defaultValue = "1",
-//            required = false)
-//
-//             int pageNo
-//            ,@RequestParam(
-//            value = "pageSize",
-//            defaultValue = "10",
-//            required = false
-//    ) int pageSize) {
-//        return ResponseEntity.ok(quizService.getAllQuiz(pageNo, pageSize));
-//    }
+   @GetMapping("Get-All")
+   public ResponseEntity<PageResponseDto>getQuizList(
+           @RequestParam(value = "pageNo",
+           defaultValue = "1",
+           required = false)
 
-//    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
+            int pageNo
+           ,@RequestParam(
+           value = "pageSize",
+           defaultValue = "10",
+           required = false
+   ) int pageSize) {
+       return ResponseEntity.ok(quizService.getAllQuiz(pageNo, pageSize));
+   }
+
+   @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     @DeleteMapping("{id}")
     public ResponseEntity<String> DeleteQuiz(@PathVariable  Long id) {
         quizService.DeleteQuiz(id);

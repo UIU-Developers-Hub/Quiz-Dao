@@ -42,16 +42,16 @@ public class QuizServiceImpl implements QuizService {
     }
 
     private QuizRequestDto mapToDto(Quiz quiz) {
-//         QuizRequestDto quizRequestDto = new QuizRequestDto(
-//                 quiz.getId(),
-//                 quiz.getQuestionTitle(),
-//                 quiz.getQuestionAnswer(),
-//                 quiz.getOptionOne(),
-//                 quiz.getOptionTwo(),
-//                 quiz.getOptionThree(),
-//                 quiz.getOptionFour(),
-//                 quizRequestDto.quizSessionId() );
-      //  QuizSession quizSession=quizSessionRepo.findById(quizRequestDto.quizSessionId()).orElse(null);
+        QuizRequestDto quizRequestDto = new QuizRequestDto(
+                quiz.getId(),
+                quiz.getQuestionTitle(),
+                quiz.getQuestionAnswer(),
+                quiz.getOptionOne(),
+                quiz.getOptionTwo(),
+                quiz.getOptionThree(),
+                quiz.getOptionFour(),
+                quizRequestDto.quizSessionId() );
+       QuizSession quizSession=quizSessionRepo.findById(quizRequestDto.quizSessionId()).orElse(null);
         return new QuizRequestDto(
                 quiz.getQuestionTitle()
                 , quiz.getQuestionAnswer(),
